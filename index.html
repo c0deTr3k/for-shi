@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Shi 🌹</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Quicksand:wght@400;600;700&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#e3b866;--cream:#f6e3cf;--choc:#3b1a14;--red:#a3141f;--ink:#f6e3cf}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:Quicksand,sans-serif;color:var(--ink);background:repeating-linear-gradient(115deg,#ffffff08 0 2px,transparent 2px 26px),radial-gradient(circle at 25% 15%,#9a2030 0,#5a1119 45%,#240b0b 100%);overflow:hidden}
+.screen{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;overflow-y:auto;animation:fade .6s}
+.screen.on{display:flex}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h1,h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:600;color:var(--gold);margin-bottom:8px;text-shadow:0 2px 10px #0006}
+h1{font-size:2rem}h2{font-size:1.7rem}
+p.sub{margin-bottom:18px;opacity:.9}
+.btn{border:1px solid var(--gold);background:linear-gradient(#b3202c,#7d0f19);color:var(--gold);font:700 1rem Quicksand;padding:12px 28px;border-radius:30px;margin-top:18px;box-shadow:0 6px 18px #0008;cursor:pointer;letter-spacing:.5px}
+.hearts{display:flex;gap:6px;justify-content:center;margin-bottom:10px}
+.hearts img{width:44vw;max-width:190px;aspect-ratio:1;object-fit:cover;object-position:top;clip-path:url(#h);filter:drop-shadow(0 0 8px #e3b86699)}
+.dots{display:flex;gap:12px;justify-content:center;margin:10px 0 16px}
+.dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--gold)}
+.dots i.f{background:var(--gold)}
+.pad{display:grid;grid-template-columns:repeat(3,64px);gap:12px;justify-content:center}
+.pad button{height:56px;border-radius:50%;border:1.5px solid var(--gold);background:radial-gradient(circle at 35% 30%,#6b3420,#3b1a14);color:var(--cream);font:700 1.3rem Quicksand;box-shadow:0 3px 8px #0006}
+.pad button:active{background:#7d4026}
+.shake{animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.err{height:20px;font-size:.9rem;color:#ffb4b4}
+.rose{filter:drop-shadow(0 0 14px #e3b86677);animation:bob 3s infinite ease-in-out;line-height:0}
+.gifts{display:flex;gap:14px;margin:14px 0;flex-wrap:wrap;justify-content:center}
+.gift{font-size:4rem;background:none;border:0;animation:bob 2s infinite ease-in-out}
+.gift:nth-child(2){animation-delay:.3s}.gift:nth-child(3){animation-delay:.6s}
+.gift.open{opacity:.4;animation:none}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:24px;z-index:9}
+.modal.on{display:flex}
+.card{background:var(--cream);color:#4a1c12;border:2px solid var(--gold);border-radius:22px;padding:26px;max-width:340px;box-shadow:0 10px 30px #000a;animation:fade .4s}
+.card h3{font-family:'Playfair Display',serif;font-style:italic;color:var(--red);margin-bottom:8px}
+.gal{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;width:100%;padding:6px 8vw 14px}
+.pol{flex:0 0 74vw;max-width:300px;scroll-snap-align:center;background:var(--cream);color:#4a1c12;padding:10px 10px 14px;border-radius:8px;box-shadow:0 6px 18px #000a;border:1px solid var(--gold)}
+.pol:nth-child(odd){transform:rotate(-2deg)}.pol:nth-child(even){transform:rotate(2deg)}
+.pol img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:4px}
+.pol span{display:block;margin-top:8px;font:700 1.15rem 'Dancing Script'}
+.bubbles{display:grid;gap:12px;width:100%;max-width:360px}
+.bub{background:var(--choc);border:1.5px dashed var(--gold);border-radius:18px;padding:12px 14px;font-weight:600;opacity:0;animation:fade .6s forwards}
+.vinyl{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,var(--gold) 0 14%,var(--red) 15% 24%,#1a0a07 25% 100%);box-shadow:0 8px 20px #000a;animation:spin 4s linear infinite;margin:6px auto 14px;animation-play-state:paused}
+.vinyl.play{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.trk{background:#3b1a14cc;border:1px solid #e3b86655;border-radius:14px;padding:10px 14px;margin:6px 0;text-align:left;font-weight:600;cursor:pointer}
+.trk.on{background:var(--red);border-color:var(--gold)}
+.note{font-size:.85rem;min-height:20px;margin-top:6px}.note a{color:var(--gold)}
+.letter{background:var(--cream);color:#4a1c12;background-image:repeating-linear-gradient(transparent 0 27px,#d9b99a 28px);max-width:370px;max-height:56vh;overflow-y:auto;padding:20px;border-radius:10px;border:2px solid var(--gold);box-shadow:0 8px 24px #000a;font:600 1.2rem/28px 'Dancing Script',cursive;text-align:left;white-space:pre-line}
+.fl{position:fixed;top:-30px;pointer-events:none;animation:fall linear forwards;z-index:1}
+@keyframes fall{to{transform:translateY(110vh) rotate(40deg)}}
+</style>
+</head>
+<body>
+<svg width="0" height="0"><clipPath id="h" clipPathUnits="objectBoundingBox"><path d="M.5,.95C.1,.65 0,.4 .1,.22 .2,.05 .42,.08 .5,.25 .58,.08 .8,.05 .9,.22 1,.4 .9,.65 .5,.95Z"/></clipPath></svg>
+
+<!-- 1. LOCK -->
+<section class="screen on" id="s0">
+  <div class="hearts"><img src="images/p2.jpg" alt=""><img src="images/p6.jpg" alt=""></div>
+  <h1>Enter our secret code</h1>
+  <p class="sub">Life’s sweeter with you 🍫 Only real besties know the code</p>
+  <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+  <div class="err" id="err"></div>
+  <div class="pad" id="pad"></div>
+</section>
+
+<!-- 2. GIFTS -->
+<section class="screen" id="s1">
+  <div class="rose" data-s="130"></div>
+  <h2>You unlocked it!</h2>
+  <p class="sub">Your surprises are waiting, Shi. Tap each one 🍫</p>
+  <div class="gifts" id="gifts"></div>
+  <button class="btn" onclick="go(2)">Next →</button>
+</section>
+
+<!-- 3. GALLERY -->
+<section class="screen" id="s2">
+  <h2>Us, being us</h2>
+  <p class="sub">Swipe through 👉</p>
+  <div class="gal" id="gal"></div>
+  <button class="btn" onclick="go(3)">Next →</button>
+</section>
+
+<!-- 4. REASONS -->
+<section class="screen" id="s3">
+  <h2>Why you’re my person</h2>
+  <div class="bubbles" id="bubs"></div>
+  <button class="btn" onclick="go(4)">Next →</button>
+</section>
+
+<!-- 5. PLAYLIST -->
+<section class="screen" id="s4">
+  <h2>A playlist for you</h2>
+  <p class="sub">Tap each one to hear your surprise 🍫</p>
+  <div class="vinyl"></div>
+  <div id="songs" style="width:100%;max-width:340px"></div>
+  <div class="note" id="note"></div>
+  <button class="btn" onclick="go(5)">Next →</button>
+</section>
+
+<!-- 6. LETTER -->
+<section class="screen" id="s5">
+  <div class="rose" data-s="56"></div>
+  <h2>A letter for my favorite person</h2>
+  <div class="letter" id="letter"></div>
+  <button class="btn" onclick="go(0);reset()">Replay 🌹</button>
+</section>
+
+<div class="modal" id="modal" onclick="this.classList.remove('on')"><div class="card"><h3 id="mt"></h3><p id="mb"></p><p style="margin-top:12px;opacity:.6;font-size:.85rem">tap to close</p></div></div>
+
+<script>
+/* ====== EDIT THESE ====== */
+const CODE = "1234";          // the 4-digit secret code
+const FROM = "Justine";       // your name, shown at the end of the letter
+const GIFTS = [
+  ["Gift 1: A reminder", "You’re one of the best things that ever happened to me. Seriously."],
+  ["Gift 2: A promise", "I’ll always be on your side, even when you’re wrong 😄"],
+  ["Gift 3: Just because", "No birthday, no occasion. I just wanted you to smile today."]
+];
+const PHOTOS = [
+  ["p1","Peace signs and zero plans ✌️"],
+  ["p2","Serious faces, silly hearts"],
+  ["p6","Tongue out, no regrets"],
+  ["p7","Moody lighting, matching moods"],
+  ["p5","That “I know I look good” look"],
+  ["p4","Certified pout expert"],
+  ["p3","The side-eye that says everything"]
+];
+const REASONS = [
+  "You pick up when I call 📞",
+  "You get my jokes when nobody else does 😂",
+  "You make boring days feel like adventures ✨",
+  "You’re real with me, always 🤍",
+  "Life is just better with you in it 🌷"
+];
+// file = mp3 you put in the music folder; link = optional Spotify/YouTube link used if the file is missing
+const SONGS = [
+  {file:"music/song1.mp3", link:""},
+  {file:"music/song2.mp3", link:""},
+  {file:"music/song3.mp3", link:""}
+];
+const LETTER = `Dear Shi,
+
+I don’t say it enough, so here it is: you mean so much to me. You’re my best friend, my safe place and my favorite kind of chaos.
+
+Thank you for the laughs, for the honesty, and for showing up every single time. I’m so glad life put you on my path.
+
+No matter what comes next, I’m always in your corner.
+
+Always your bestie,
+${FROM} 💗`;
+/* ======================== */
+
+const $=id=>document.getElementById(id);
+let cur=0, entered="";
+function go(n){if(n!=4)stop();document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$('s'+n).classList.add('on');cur=n;if(n==1)burst();if(n==3)bubbles();if(n==5)$('letter').textContent=LETTER;}
+function reset(){entered="";draw()}
+function draw(){[...$('dots').children].forEach((d,i)=>d.classList.toggle('f',i<entered.length))}
+const keys=[1,2,3,4,5,6,7,8,9,'⌫',0,'♥'];
+keys.forEach(k=>{const b=document.createElement('button');b.textContent=k;b.onclick=()=>press(k);$('pad').appendChild(b)});
+function press(k){
+  if(k==='⌫'){entered=entered.slice(0,-1)}
+  else if(k==='♥'){}
+  else if(entered.length<4){entered+=k}
+  draw();$('err').textContent="";
+  if(entered.length==4){
+    if(entered===CODE){setTimeout(()=>go(1),300)}
+    else{$('err').textContent="Hmm, not quite. Try again 💭";$('dots').classList.add('shake');setTimeout(()=>{$('dots').classList.remove('shake');entered="";draw()},450)}
+  }
+}
+GIFTS.forEach(([t,b],i)=>{const g=document.createElement('button');g.className='gift';g.textContent=['🌹','🍫','🎀'][i];g.onclick=()=>{$('mt').textContent=t;$('mb').textContent=b;$('modal').classList.add('on');g.classList.add('open')};$('gifts').appendChild(g)});
+PHOTOS.forEach(([p,c])=>{const d=document.createElement('div');d.className='pol';d.innerHTML=`<img src="images/${p}.jpg" alt=""><span>${c}</span>`;$('gal').appendChild(d)});
+function bubbles(){$('bubs').innerHTML="";REASONS.forEach((r,i)=>{const d=document.createElement('div');d.className='bub';d.style.animationDelay=(i*.5)+'s';d.textContent=r;$('bubs').appendChild(d)})}
+let au=null,curT=null;
+function stop(){if(au){au.pause();au=null}if(curT)curT.classList.remove('on');curT=null;document.querySelector('.vinyl').classList.remove('play')}
+function fb(s){$('note').innerHTML=s.link?`<a href="${s.link}" target="_blank">Open your surprise here</a>`:"Add this song’s mp3 to the music folder first 🎵"}
+function play(s,el){if(curT===el){stop();return}stop();$('note').textContent="";
+  au=new Audio(s.file);au.onended=stop;
+  au.play().then(()=>{curT=el;el.classList.add('on');document.querySelector('.vinyl').classList.add('play')}).catch(()=>{au=null;fb(s)})}
+SONGS.forEach((s,i)=>{const d=document.createElement('div');d.className='trk';d.textContent='🍫 Surprise song '+(i+1);d.onclick=()=>play(s,d);$('songs').appendChild(d)});
+function burst(){for(let i=0;i<18;i++){setTimeout(()=>{const f=document.createElement('div');f.className='fl';f.textContent=['🌹','🍫','✨','🤎'][i%4];f.style.left=Math.random()*95+'vw';f.style.fontSize=(16+Math.random()*18)+'px';f.style.animationDuration=(4+Math.random()*3)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),7500)},i*180)}}
+function rose(sz){let p='';[[40,8,'#4e2214'],[32,7,'#5f2b19'],[25,6,'#74371f'],[18,5,'#8a4528'],[12,4,'#9c5432'],[7,3,'#b0663f']].forEach(([r,n,c],i)=>{for(let k=0;k<n;k++)p+=`<circle cx="50" cy="${50-r*.55}" r="${r*.62}" fill="${c}" stroke="#24100a" stroke-width=".8" transform="rotate(${k*360/n+i*17} 50 50)"/>`});
+return `<svg viewBox="0 0 100 100" width="${sz}" height="${sz}"><defs><radialGradient id="gl" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${p}<circle cx="50" cy="50" r="46" fill="url(#gl)"/></svg>`}
+document.querySelectorAll('.rose').forEach(e=>e.innerHTML=rose(+e.dataset.s));
+</script>
+</body>
+</html>
