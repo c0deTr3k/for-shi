@@ -177,13 +177,15 @@ function press(k){
 GIFTS.forEach(([t,b],i)=>{const g=document.createElement('button');g.className='gift';g.textContent=['🌹','🍫','🎀'][i];g.onclick=()=>{$('mt').textContent=t;$('mb').textContent=b;$('modal').classList.add('on');g.classList.add('open')};$('gifts').appendChild(g)});
 PHOTOS.forEach(([p,c])=>{const d=document.createElement('div');d.className='pol';d.innerHTML=`<img src="images/${p}.jpg" alt=""><span>${c}</span>`;$('gal').appendChild(d)});
 function bubbles(){$('bubs').innerHTML="";REASONS.forEach((r,i)=>{const d=document.createElement('div');d.className='bub';d.style.animationDelay=(i*.5)+'s';d.textContent=r;$('bubs').appendChild(d)})}
-let au=null,curT=null;
-function stop(){if(au){au.pause();au=null}if(curT)curT.classList.remove('on');curT=null;document.querySelector('.vinyl').classList.remove('play')}
+const rows=[],vin=document.querySelector('.vinyl');let au=null,curI=-1,tok=0;
+function setLab(i,on){rows[i].textContent=(on?'⏸ ':'▶ ')+'Surprise song '+(i+1)+(on?' · tap to pause':'');rows[i].classList.toggle('on',on)}
+function stop(){tok++;if(au){au.pause();au=null}rows.forEach((_,i)=>setLab(i,false));curI=-1;vin.classList.remove('play')}
 function fb(s){$('note').innerHTML=s.link?`<a href="${s.link}" target="_blank">Open your surprise here</a>`:"Add this song’s mp3 to the music folder first 🎵"}
-function play(s,el){if(curT===el){stop();return}stop();$('note').textContent="";
-  au=new Audio(s.file);au.onended=stop;
-  au.play().then(()=>{curT=el;el.classList.add('on');document.querySelector('.vinyl').classList.add('play')}).catch(()=>{au=null;fb(s)})}
-SONGS.forEach((s,i)=>{const d=document.createElement('div');d.className='trk';d.textContent='🍫 Surprise song '+(i+1);d.onclick=()=>play(s,d);$('songs').appendChild(d)});
+function play(s,i){
+  if(au&&curI===i){if(au.paused){au.play();setLab(i,true);vin.classList.add('play')}else{au.pause();setLab(i,false);vin.classList.remove('play')}return}
+  stop();$('note').textContent="";const t=tok,a=new Audio(s.file);a.onended=stop;
+  a.play().then(()=>{if(t!==tok){a.pause();return}au=a;curI=i;setLab(i,true);vin.classList.add('play')}).catch(()=>{if(t===tok)fb(s)})}
+SONGS.forEach((s,i)=>{const d=document.createElement('div');d.className='trk';d.onclick=()=>play(s,i);rows.push(d);setLab(i,false);$('songs').appendChild(d)});
 function burst(){for(let i=0;i<18;i++){setTimeout(()=>{const f=document.createElement('div');f.className='fl';f.textContent=['🌹','🍫','✨','🤎'][i%4];f.style.left=Math.random()*95+'vw';f.style.fontSize=(16+Math.random()*18)+'px';f.style.animationDuration=(4+Math.random()*3)+'s';document.body.appendChild(f);setTimeout(()=>f.remove(),7500)},i*180)}}
 function rose(sz){let p='';[[40,8,'#4e2214'],[32,7,'#5f2b19'],[25,6,'#74371f'],[18,5,'#8a4528'],[12,4,'#9c5432'],[7,3,'#b0663f']].forEach(([r,n,c],i)=>{for(let k=0;k<n;k++)p+=`<circle cx="50" cy="${50-r*.55}" r="${r*.62}" fill="${c}" stroke="#24100a" stroke-width=".8" transform="rotate(${k*360/n+i*17} 50 50)"/>`});
 return `<svg viewBox="0 0 100 100" width="${sz}" height="${sz}"><defs><radialGradient id="gl" cx=".35" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>${p}<circle cx="50" cy="50" r="46" fill="url(#gl)"/></svg>`}
